@@ -1,0 +1,38 @@
+
+name: Build Hello Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: hello-android
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build Android APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: Save APK for download
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-android-apk
+          path: hello-android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
