@@ -1,0 +1,6 @@
+{
+  "name": "Hello Android",
+  "description": "A clean, modern native Android application displaying Hello Android using Jetpack Compose and Material Design 3.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
